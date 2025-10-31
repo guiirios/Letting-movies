@@ -16,16 +16,24 @@ O objetivo é permitir que usuários avaliem e explorem filmes, diretores, gêne
 ---
 
 
-🧱 Estrutura das Tabelas
-Tabela	Descrição
-Users	Dados dos usuários (nome, e-mail, senha, imagem, data de nascimento)
-Movies	Informações sobre os filmes (título, sinopse, data de lançamento, pôster)
-Director	Lista dos diretores
-Movies_Director	Relação N:N entre filmes e diretores
-Genre	Gêneros de filmes
-Genre_Movies	Relação N:N entre gêneros e filmes
-Actors	Dados dos atores (nome, nacionalidade, bio, nascimento)
-Rating	Avaliações e notas dos usuários (1 a 5 estrelas)
+## 🧱 Estrutura das Tabelas
+
+| 🗂️ **Tabela** | 📖 **Descrição** |
+|----------------|------------------|
+| **Users** 👤 | Armazena dados dos usuários, incluindo **nome**, **e-mail**, **senha**, **foto de perfil** e **data de nascimento**. |
+| **Movies** 🎬 | Contém informações sobre os **filmes**, como **título**, **sinopse**, **data de lançamento** e **pôster**. |
+| **Director** 🎥 | Registra os **diretores** dos filmes. |
+| **Movies_Director** 🔁 | Cria a **relação N:N** entre **filmes e diretores**. |
+| **Genre** 🏷️ | Define os **gêneros cinematográficos** (Ação, Drama, Comédia, etc.). |
+| **Genre_Movies** 🎭 | Cria a **relação N:N** entre **gêneros e filmes**. |
+| **Actors** ⭐ | Armazena dados dos **atores**, como **nome**, **nacionalidade**, **biografia** e **data de nascimento**. |
+| **Rating** ⭐📊 | Guarda as **avaliações dos usuários**, permitindo notas de **1 a 5** para cada filme. |
+
+---
+
+✨ Cada tabela foi criada com **chaves primárias, estrangeiras e constraints** para garantir a integridade e consistência dos dados.
+
+- Avaliações e notas dos usuários (1 a 5 estrelas)
 
 💻 Tecnologias Utilizadas
 🗄️ MySQL
