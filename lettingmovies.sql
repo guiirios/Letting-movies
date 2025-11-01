@@ -5,7 +5,7 @@ USE LettingMovies;
 
 CREATE TABLE Users(
 	id_user INT PRIMARY KEY AUTO_INCREMENT,
-    name_user VARCHAR(100),
+    user_name VARCHAR(100),
     email_user VARCHAR(100),
     password_user VARCHAR(255),
 	picture_user VARCHAR(255),
@@ -82,8 +82,7 @@ SHOW CREATE TABLE Users;
 
 #ALTER TABLE
 ALTER TABLE Movies RENAME COLUMN Synopsis TO synopsis; 
-ALTER TABLE Users MODIFY COLUMN  email_user INT NOT NULL;
-ALTER TABLE Users MODIFY COLUMN  name_user VARCHAR (100) NOT NULL;
+ALTER TABLE Director MODIFY COLUMN  director_name VARCHAR (50) NOT NULL;
 ALTER TABLE Movies MODIFY COLUMN release_date DATE NOT NULL;
 ALTER TABLE Movies RENAME COLUMN poster_movie to movie_poster;
 ALTER TABLE Users ADD COLUMN profile_number int;
@@ -93,6 +92,8 @@ ALTER TABLE Rating MODIFY COLUMN  id_user INT NOT NULL;
 ALTER TABLE Rating MODIFY COLUMN  id_movie INT NOT NULL;
 ALTER TABLE movies_director MODIFY COLUMN id_movie INT NOT NULL;
 ALTER TABLE movies_director MODIFY COLUMN id_director INT NOT NULL;
+
+
 
 #adicionando dfeult current timestamp para ele adicionar automaticamente a data
 ALTER TABLE Rating ADD COLUMN created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
@@ -107,15 +108,31 @@ INSERT INTO genre(genre_name)
 VALUES("Action"),("Comedy"),("Drama"),("Horror"),("Romance"),
 ("Thriller"),("Science Fiction"),("Documentary"),("Animation");
 
-INSERT INTO Movies(movie_name, release_date, synopsis)VALUES("Interestellar",'2014-10-26', 
-"In a dystopian future, Earth is ravaged by catastrophic crop blights and dust storms, 
+INSERT INTO Movies(movie_name, release_date, synopsis)VALUES("Things I Hate About You",'1999-03-31', 
+"A new student in high school schemes to date a popular girl by setting her up with a boy, while her older sister resists romance and learns to open her heart.
 ");
 
-INSERT INTO Director(director_name) VALUES ("Steven Spielberg");
-INSERT INTO movies_director(id_director, id_movie)VALUES(1, 1);
 
+
+INSERT INTO Director(director_name) VALUES ("Steven Spielberg");
+INSERT INTO movies_director(id_director, id_movie)VALUES(3, 2);
+
+SELECT * FROM Users;
 SELECT * FROM director;
 SELECT * FROM rating;
 SELECT * FROM movies_director;
+SELECT * FROM movies;
 
 SELECT * FROM director WHERE director_name = "Christopher Nolan";
+
+
+#ele so vai aparecer o que tem correspondencia com a tabela movies_director
+SELECT * from movies m
+JOIN movies_director md on md.id_movie = m.id_movie 
+JOIN director d on d.id_director = md.id_director
+;
+
+SELECT * FROM movies m LEFT JOIN movies_director md ON md.id_movie = m.id_movie
+LEFT JOIN director d on d.id_director = md.id_director
+;
+
