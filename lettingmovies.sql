@@ -58,6 +58,13 @@ CREATE TABLE Actors(
     bio TEXT
 );
 
+CREATE TABLE Movie_Actors(
+	id_actor INT,
+    id_movie INT,
+    FOREIGN KEY (id_actor) REFERENCES Actors(id_actor),
+    FOREIGN KEY (id_movie) REFERENCES Movies(id_movie)
+);
+
 
 #como vários usuários podem dar nota em varios filmes e varios filmes podem ter varias notas, entao criamos a tabela ranting
 CREATE TABLE Rating(
@@ -135,4 +142,3 @@ JOIN director d on d.id_director = md.id_director
 SELECT * FROM movies m LEFT JOIN movies_director md ON md.id_movie = m.id_movie
 LEFT JOIN director d on d.id_director = md.id_director
 ;
-
