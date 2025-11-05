@@ -9,7 +9,7 @@ O objetivo é permitir que usuários avaliem e explorem filmes, diretores, gêne
 
 | Arquivo | Descrição |
 |----------|------------|
-| **LettingMovies.mwb** | Modelo visual criado no *MySQL Workbench* (contém o diagrama e relacionamentos) |
+| **lettingmovies.mwb** | Modelo visual criado no *MySQL Workbench* (contém o diagrama e relacionamentos) |
 | **lettingmovies.sql** | Script SQL exportado a partir do modelo, usado para criar o banco no MySQL |
 | **README.md** | Documentação do projeto |
 
