@@ -99,30 +99,29 @@ ALTER TABLE Rating MODIFY COLUMN  id_user INT NOT NULL;
 ALTER TABLE Rating MODIFY COLUMN  id_movie INT NOT NULL;
 ALTER TABLE movies_director MODIFY COLUMN id_movie INT NOT NULL;
 ALTER TABLE movies_director MODIFY COLUMN id_director INT NOT NULL;
-
-
-
+ALTER TABLE Users ADD CONSTRAINT constraint_user_email UNIQUE (email_user);
+#adding a security rule to not repeat the par 
+ALTER TABLE movies_director ADD CONSTRAINT unique_movies_director UNIQUE (id_movie, id_director);
 #adicionando dfeult current timestamp para ele adicionar automaticamente a data
 ALTER TABLE Rating ADD COLUMN created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
 
 
-SHOW COLUMNS FROM movies_director;
-
-Use lettingMovies;
 
 #INSERT INTO
 INSERT INTO genre(genre_name) 
 VALUES("Action"),("Comedy"),("Drama"),("Horror"),("Romance"),
 ("Thriller"),("Science Fiction"),("Documentary"),("Animation");
 
-INSERT INTO Movies(movie_name, release_date, synopsis)VALUES("Things I Hate About You",'1999-03-31', 
-"A new student in high school schemes to date a popular girl by setting her up with a boy, while her older sister resists romance and learns to open her heart.
-");
+INSERT INTO Movies(movie_name, release_date, synopsis)VALUES("Batman The Dark Knight",'2008-07-18', 
+"menace known as the Joker wreaks havoc and chaos on the people of Gotham City. Batman, Lt. Jim Gordon and District Attorney Harvey Dent must work together to dismantle 
+criminal organisations, but the Joker’s reign of terror forces Batman to come back.");
 
 
 
 INSERT INTO Director(director_name) VALUES ("Steven Spielberg");
-INSERT INTO movies_director(id_director, id_movie)VALUES(3, 2);
+INSERT INTO movies_director(id_director, id_movie)VALUES(1, 4);
+
+
 
 SELECT * FROM Users;
 SELECT * FROM director;
@@ -130,15 +129,14 @@ SELECT * FROM rating;
 SELECT * FROM movies_director;
 SELECT * FROM movies;
 
-SELECT * FROM director WHERE director_name = "Christopher Nolan";
+#To findo code duplications
+SELECT id_movie, id_director, COUNT(*) FROM movies_director GROUP BY id_movie, id_director;
 
+# TO show all the movies even when there's no director
+SELECT movie_name as Movie, synopsis as Synopsis, director_name AS Director FROM MOVIES m LEFT JOIN movies_director md ON md.id_movie = m.id_movie
+LEFT join DIRECTOR d ON d.id_director = md.id_director; 	
 
-#ele so vai aparecer o que tem correspondencia com a tabela movies_director
-SELECT * from movies m
-JOIN movies_director md on md.id_movie = m.id_movie 
-JOIN director d on d.id_director = md.id_director
-;
-
-SELECT * FROM movies m LEFT JOIN movies_director md ON md.id_movie = m.id_movie
-LEFT JOIN director d on d.id_director = md.id_director
-;
+#Filtering director Christopher Nolan
+SELECT movie_name as Movie, synopsis as Synopsis, director_name AS Director 
+FROM Movies m LEFT JOIN movies_director md ON md.id_movie = m.id_movie
+LEFT join Director d ON d.id_director = md.id_director WHERE director_name  LIKE '%nolan';
