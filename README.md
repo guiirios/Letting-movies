@@ -1,5 +1,8 @@
 # **🎬 LettingMovies – Banco de Dados Relacional de Filmes e Avaliações**
 
+![SQL](https://img.shields.io/badge/SQL-fff?style=for-the-badge&logo=mysql&logoColor=blue)
+
+
 Este repositório contém o **modelo relacional completo** do banco de dados **LettingMovies**, desenvolvido no **MySQL Workbench**.  
 O objetivo é permitir que usuários avaliem e explorem filmes, diretores, gêneros e atores — inspirado na plataforma **Letterboxd**.
 
