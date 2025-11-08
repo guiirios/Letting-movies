@@ -65,7 +65,6 @@ CREATE TABLE Movie_Actors(
     FOREIGN KEY (id_movie) REFERENCES Movies(id_movie)
 );
 
-
 #como vários usuários podem dar nota em varios filmes e varios filmes podem ter varias notas, entao criamos a tabela ranting
 CREATE TABLE Rating(
 	id_rating INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -130,13 +129,16 @@ SELECT * FROM movies_director;
 SELECT * FROM movies;
 
 #To findo code duplications
-SELECT id_movie, id_director, COUNT(*) FROM movies_director GROUP BY id_movie, id_director;
+SELECT id_movie, id_director, COUNT(*) as "repetitions" FROM movies_director GROUP BY id_movie, id_director;
 
 # TO show all the movies even when there's no director
-SELECT movie_name as Movie, synopsis as Synopsis, director_name AS Director FROM MOVIES m LEFT JOIN movies_director md ON md.id_movie = m.id_movie
+SELECT movie_name as Movie, synopsis as Synopsis, director_name AS Director, m.release_date as Year 
+FROM MOVIES m LEFT JOIN movies_director md ON md.id_movie = m.id_movie
 LEFT join DIRECTOR d ON d.id_director = md.id_director; 	
 
 #Filtering director Christopher Nolan
 SELECT movie_name as Movie, synopsis as Synopsis, director_name AS Director 
 FROM Movies m LEFT JOIN movies_director md ON md.id_movie = m.id_movie
 LEFT join Director d ON d.id_director = md.id_director WHERE director_name  LIKE '%nolan';
+
+select count(*) from movies
