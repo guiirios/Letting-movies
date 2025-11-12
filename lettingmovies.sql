@@ -198,5 +198,7 @@ SELECT director_name as Director, COUNT(m.id_movie) as "Directed Movies" FROM Di
 LEFT JOIN movies_director AS md ON md.id_director = d.id_director 
 LEFT JOIN Movies as m ON m.id_movie = md.id_movie GROUP BY director_name HAVING count(m.id_movie) > 2;
 
-
+#Searching for a movie with a name spider-man, like netflix searcher
+SELECT director_name, movie_name from DIRECTOR RIGHT JOIN movies_director as md ON md.id_director = director.id_director
+RIGHT JOIN movies AS m ON m.id_movie = md.id_movie WHERE movie_name LIKE "%spider-man%"
 
